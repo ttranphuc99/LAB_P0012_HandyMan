@@ -12,6 +12,18 @@
         <servlet-name>ContactController</servlet-name>
         <servlet-class>phuctt.controllers.ContactController</servlet-class>
     </servlet>
+    <servlet>
+        <servlet-name>ContactMessageController</servlet-name>
+        <servlet-class>phuctt.controllers.ContactMessageController</servlet-class>
+    </servlet>
+    <servlet>
+        <servlet-name>ReferencesController</servlet-name>
+        <servlet-class>phuctt.controllers.ReferencesController</servlet-class>
+    </servlet>
+    <servlet>
+        <servlet-name>ReferenceMessageController</servlet-name>
+        <servlet-class>phuctt.controllers.ReferenceMessageController</servlet-class>
+    </servlet>
     <servlet-mapping>
         <servlet-name>IntroductionController</servlet-name>
         <url-pattern>/IntroductionController</url-pattern>
@@ -23,6 +35,18 @@
     <servlet-mapping>
         <servlet-name>ContactController</servlet-name>
         <url-pattern>/ContactController</url-pattern>
+    </servlet-mapping>
+    <servlet-mapping>
+        <servlet-name>ContactMessageController</servlet-name>
+        <url-pattern>/ContactMessageController</url-pattern>
+    </servlet-mapping>
+    <servlet-mapping>
+        <servlet-name>ReferencesController</servlet-name>
+        <url-pattern>/ReferencesController</url-pattern>
+    </servlet-mapping>
+    <servlet-mapping>
+        <servlet-name>ReferenceMessageController</servlet-name>
+        <url-pattern>/ReferenceMessageController</url-pattern>
     </servlet-mapping>
     <session-config>
         <session-timeout>

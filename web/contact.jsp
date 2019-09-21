@@ -170,24 +170,25 @@
                                     </div>
 
                                     <div class="section contact-form">
+                                        <span>${requestScope.TKS_MESS}</span>
                                         <div class="content">
                                             <form action="/P0012HandyMan/ContactMessageController" method="POST" onsubmit="return validate();">
                                                 <div class="row-fluid">
                                                     <div class="span6">
                                                         <input type="text" placeholder="Write your name here!" id="txtName" name="txtName" required="true"/>
-                                                        <span class="help-block" id="nameError"></span>
+                                                        <small id="nameError" style="display: none;"></small>
                                                     </div>
                                                     
                                                     <div class="span6">
                                                         <input type="text" placeholder="Write your email here!" id="txtEmail" name="txtEmail" required="true"/>
-                                                        <span class="help-block" id="emailError"></span>
+                                                        <small id="emailError" style="display: none;"></small>
                                                     </div>
                                                 </div>
                                                 
                                                 <div class="row-fluid">
                                                     <div class="span12">
                                                         <textarea name="txtMessage" placeholder="Write your message here!" id="txtMessage" required="true"></textarea>
-                                                        <span class="help-block" id="messageError"></span>
+                                                        <small id="messageError" style="display: none;"></small>
                                                     </div>
                                                 </div>
                                                 
