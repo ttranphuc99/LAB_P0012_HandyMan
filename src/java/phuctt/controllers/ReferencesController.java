@@ -7,10 +7,13 @@ package phuctt.controllers;
 
 import java.io.IOException;
 import java.io.PrintWriter;
+import java.util.List;
 import javax.servlet.ServletException;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
+import phuctt.daos.ReferenceMessageDAO;
+import phuctt.dtos.ReferenceMessageDTO;
 
 /**
  *
@@ -34,6 +37,8 @@ public class ReferencesController extends HttpServlet {
         response.setContentType("text/html;charset=UTF-8");
         String url = ERROR;
         try {
+            List<ReferenceMessageDTO> list = (new ReferenceMessageDAO()).getList();
+            request.setAttribute("LIST", list);
             url = REFERENCE;
         } catch (Exception e) {
             log("Error at ReferenceController: " + e.getMessage());

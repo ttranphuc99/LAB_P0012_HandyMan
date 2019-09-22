@@ -4,6 +4,7 @@
     Author     : Thien Phuc
 --%>
 
+<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 <%@page contentType="text/html" pageEncoding="UTF-8"%>
 <!DOCTYPE html>
 <!-- saved from url=(0046)http://us-123handyman.simplesite.com/422327265 -->
@@ -146,40 +147,40 @@
                                                     <div class="form-horizontal">
                                                         <div class="control-group">
                                                             <textarea name="txtMessage" 
-                                                            class="input-block-level" 
-                                                            maxlength="1500" 
-                                                            placeholder="Write your message"
-                                                            id="txtMessage"
-                                                            required></textarea>
+                                                                      class="input-block-level" 
+                                                                      maxlength="1500" 
+                                                                      placeholder="Write your message"
+                                                                      id="txtMessage"
+                                                                      required></textarea>
                                                             <small id="messageError"></small>
                                                         </div>
 
                                                         <div class="control-group">
                                                             <input name="txtName" 
-                                                            class="input-block-level" 
-                                                            type="text" 
-                                                            placeholder="Write your name here"
-                                                            id="txtName"
-                                                            required/>
+                                                                   class="input-block-level" 
+                                                                   type="text" 
+                                                                   placeholder="Write your name here"
+                                                                   id="txtName"
+                                                                   required/>
                                                             <small id="nameError"></small>
                                                         </div>
 
                                                         <div class="control-group">
                                                             <input name="txtEmail" 
-                                                            class="input-block-level" 
-                                                            type="text" 
-                                                            placeholder="Write your email here"
-                                                            id="txtEmail"
-                                                            required/>
+                                                                   class="input-block-level" 
+                                                                   type="text" 
+                                                                   placeholder="Write your email here"
+                                                                   id="txtEmail"
+                                                                   required/>
                                                             <small id="emailError"></small>
                                                         </div>
 
                                                         <div class="control-group">
                                                             <input name="txtWebsite" 
-                                                            class="input-block-level" 
-                                                            type="text" 
-                                                            placeholder="Your website address, if you have a site"
-                                                            id="txtWebsite"/>
+                                                                   class="input-block-level" 
+                                                                   type="text" 
+                                                                   placeholder="Your website address, if you have a site"
+                                                                   id="txtWebsite"/>
                                                             <small id="websiteError"></small>
                                                         </div>
                                                     </div>
@@ -202,36 +203,28 @@
                                     </div>
                                     <div class="section">
                                         <div class="content">
-                                            <div class="item">
-                                                <div class="controls">
-                                                    <a rel="nofollow" class="email" href="mailto:haipt@fpt.edu.vn">Email</a>
-                                                    <a rel="nofollow" class="website" href="http://haipt@fpt.edu.vn/" target="_blank">Website</a>
-                                                    <span class="date-text">07-04-2016</span>
-                                                </div>
-                                                <div class="heading">
-                                                    <h4>haipt@fpt.edu.vn</h4>
-                                                </div>
+                                            <c:forEach items="${requestScope.LIST}" var="reference">
+                                                <div class="item">
+                                                    <div class="controls">
+                                                        <a rel="nofollow" class="email" href="mailto:<c:out value="${reference.email}"/>">Email</a>
+                                                        <a rel="nofollow" class="website" href="<c:out value="${reference.website}"/>" target="_blank">Website</a>
+                                                        <span class="date-text">${reference.createdTime}</span>
+                                                    </div>
+                                                    <div class="heading">
+                                                        <h4>${reference.name}</h4>
+                                                    </div>
 
-                                                <div class="content">
+                                                    <div class="content">
+                                                        <p>${reference.message}</p>
+                                                    </div>
 
-                                                    <p>I love your service</p>
+                                                    <c:if test="${reference.image != null}">
+                                                        <div>
+                                                            <img src="./resource/reference/<c:out value="${reference.image}"/>" width="300" />
+                                                        </div>
+                                                    </c:if>
                                                 </div>
-                                            </div>
-                                            <div class="item">
-                                                <div class="controls">
-                                                    <a rel="nofollow" class="email" href="mailto:adasdasd@ddd.com">Email</a>
-                                                    <a rel="nofollow" class="website" href="http://asdasa/" target="_blank">Website</a>
-                                                    <span class="date-text">07-04-2016</span>
-                                                </div>
-                                                <div class="heading">
-                                                    <h4>asd</h4>
-                                                </div>
-
-                                                <div class="content">
-
-                                                    <p>asdasd</p>
-                                                </div>
-                                            </div>
+                                            </c:forEach>
                                         </div>
                                     </div>
                                 </div>

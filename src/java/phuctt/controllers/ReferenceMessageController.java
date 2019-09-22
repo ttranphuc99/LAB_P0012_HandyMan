@@ -18,14 +18,18 @@ import org.apache.commons.fileupload.FileItem;
 import org.apache.commons.fileupload.FileItemFactory;
 import org.apache.commons.fileupload.disk.DiskFileItemFactory;
 import org.apache.commons.fileupload.servlet.ServletFileUpload;
+import phuctt.daos.ReferenceMessageDAO;
+import phuctt.dtos.ReferenceMessageDTO;
 
 /**
  *
  * @author Thien Phuc
  */
 public class ReferenceMessageController extends HttpServlet {
+
     private static final String ERROR = "error.jsp";
     private static final String SUCCESS = "ReferencesController";
+
     /**
      * Processes requests for both HTTP <code>GET</code> and <code>POST</code>
      * methods.
@@ -41,32 +45,62 @@ public class ReferenceMessageController extends HttpServlet {
         String url = ERROR;
         try {
             boolean isMultipart = ServletFileUpload.isMultipartContent(request);
-            
+
             if (isMultipart) {
                 FileItemFactory factory = new DiskFileItemFactory();
                 ServletFileUpload upload = new ServletFileUpload(factory);
-                
+
                 List items = null;
                 items = upload.parseRequest(request);
-                
+
                 Iterator iter = items.iterator();
                 Hashtable params = new Hashtable();
                 String filename;
-                
+                FileItem item = null;
+                FileItem uploadFile = null;
+
                 while (iter.hasNext()) {
-                    FileItem item = (FileItem) iter.next();
+                    item = (FileItem) iter.next();
                     if (item.isFormField()) {
                         params.put(item.getFieldName(), item.getString());
                     } else {
-                        String itemName = item.getName();
+                        uploadFile = item;
+                        /*String itemName = item.getName();
                         filename = itemName.substring(itemName.lastIndexOf("\\") + 1);
                         String realPath = getServletContext().getRealPath("/") + "resource\\reference\\" + filename;
                         
                         File savedFile = new File(realPath);
-                        item.write(savedFile);
+                        item.write(savedFile);*/
                     }
                 }
-                url = SUCCESS;
+
+                String name = (String) params.get("txtName");
+                String email = (String) params.get("txtEmail");
+                String website = (String) params.get("txtWebsite");
+                String message = (String) params.get("txtMessage");
+
+                if (!website.contains("http://") && !website.contains("https://")) {
+                    website = "http://" + website;
+                }
+                ReferenceMessageDTO dto = new ReferenceMessageDTO(0, name, email, website, message, email, null);
+
+                int id = (new ReferenceMessageDAO()).insert(dto);
+
+                String itemName = uploadFile.getName();
+                if (!itemName.trim().isEmpty()) {
+                    filename = id + itemName.substring(itemName.lastIndexOf("."));
+                    String realPath = getServletContext().getRealPath("/") + "resource\\reference\\" + filename;
+
+                    File savedFile = new File(realPath);
+                    uploadFile.write(savedFile);
+
+                    if ((new ReferenceMessageDAO()).updateImg(filename, id)) {
+                        url = SUCCESS;
+                    }
+                } else {
+                    url = SUCCESS;
+                }
+
             }
         } catch (Exception e) {
             log("Error at ReferenceMessageController: " + e.getMessage());
