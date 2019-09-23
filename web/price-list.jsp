@@ -141,6 +141,7 @@
                                 <div class="content">
                                     <div class="section">
                                         <div class="content">
+                                            <c:if test="${not empty requestScope.LIST}">
                                             <table class="table">
                                                 <thead>
                                                     <tr>
@@ -159,7 +160,10 @@
                                                     </c:forEach>
                                                 </tbody>
                                             </table>
-
+                                            </c:if>
+                                            <c:if test="${empty requestScope.LIST}">
+                                                <div><font color="red">No available services!</font></div>
+                                            </c:if>
                                         </div>
                                     </div>
                                 </div>

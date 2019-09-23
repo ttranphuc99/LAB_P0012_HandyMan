@@ -6,7 +6,6 @@
 package phuctt.controllers;
 
 import java.io.IOException;
-import java.io.PrintWriter;
 import java.util.List;
 import javax.servlet.ServletException;
 import javax.servlet.http.HttpServlet;
@@ -39,6 +38,7 @@ public class PriceListController extends HttpServlet {
         String url = ERROR;
         try {
             List<ServiceDTO> list = (new ServiceDAO()).getPriceList();
+            
             request.setAttribute("LIST", list);
             url = PRICE_LIST;
         } catch (Exception e) {

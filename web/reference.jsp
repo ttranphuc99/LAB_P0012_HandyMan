@@ -203,28 +203,33 @@
                                     </div>
                                     <div class="section">
                                         <div class="content">
-                                            <c:forEach items="${requestScope.LIST}" var="reference">
-                                                <div class="item">
-                                                    <div class="controls">
-                                                        <a rel="nofollow" class="email" href="mailto:<c:out value="${reference.email}"/>">Email</a>
-                                                        <a rel="nofollow" class="website" href="<c:out value="${reference.website}"/>" target="_blank">Website</a>
-                                                        <span class="date-text">${reference.createdTime}</span>
-                                                    </div>
-                                                    <div class="heading">
-                                                        <h4>${reference.name}</h4>
-                                                    </div>
-
-                                                    <div class="content">
-                                                        <p>${reference.message}</p>
-                                                    </div>
-
-                                                    <c:if test="${reference.image != null}">
-                                                        <div>
-                                                            <img src="./resource/reference/<c:out value="${reference.image}"/>" width="300" />
+                                            <c:if test="${not empty requestScope.LIST}">
+                                                <c:forEach items="${requestScope.LIST}" var="reference">
+                                                    <div class="item">
+                                                        <div class="controls">
+                                                            <a rel="nofollow" class="email" href="mailto:<c:out value="${reference.email}"/>">Email</a>
+                                                            <a rel="nofollow" class="website" href="<c:out value="${reference.website}"/>" target="_blank">Website</a>
+                                                            <span class="date-text">${reference.createdTime}</span>
                                                         </div>
-                                                    </c:if>
-                                                </div>
-                                            </c:forEach>
+                                                        <div class="heading">
+                                                            <h4>${reference.name}</h4>
+                                                        </div>
+
+                                                        <div class="content">
+                                                            <p>${reference.message}</p>
+                                                        </div>
+
+                                                        <c:if test="${reference.image != null}">
+                                                            <div>
+                                                                <img src="./resource/reference/<c:out value="${reference.image}"/>" width="300" />
+                                                            </div>
+                                                        </c:if>
+                                                    </div>
+                                                </c:forEach>
+                                            </c:if>
+                                            <c:if test="${empty requestScope.LIST}">
+                                                <font color="red">Not found any Reference Message</font>
+                                            </c:if>
                                         </div>
                                     </div>
                                 </div>

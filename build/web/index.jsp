@@ -189,32 +189,39 @@
                                                 ${requestScope.DTO.description}
                                             </p>
                                             <p><a rel="nofollow"
-                                                  href="/">Contact
+                                                  href="/P0012HandyMan/ContactController">Contact
                                                     us with your query</a></p>
                                         </div>
                                     </div>
                                     <!--List service go here-->
-                                    <c:forEach items="${requestScope.LIST}" var="service">
-                                    <div class="section article">
-                                        <div class="heading">
-                                            <h3>${service.name}</h3>
-                                            <small>${service.publishDate}</small>
-                                        </div>
+                                    <c:if test="${not empty requestScope.LIST}">
+                                        <c:forEach items="${requestScope.LIST}" var="service">
+                                            <div class="section article">
+                                                <div class="heading">
+                                                    <h3>${service.name}</h3>
+                                                    <small>${service.publishDate}</small>
+                                                </div>
 
-                                        <div class="content">
-                                            <div class="img-simple span3 pull-left">
-                                                <div class="image">
-                                                    <a rel="nofollow" data-ss="imagemodal"
-                                                       data-href="./resource/index/<c:out value="${service.image}"/>"><img
-                                                            src="./resource/index/<c:out value="${service.image}"/>"></a>
+                                                <div class="content">
+                                                    <div class="img-simple span3 pull-left">
+                                                        <div class="image">
+                                                            <a rel="nofollow" data-ss="imagemodal"
+                                                               data-href="./resource/index/<c:out value="${service.image}"/>"><img
+                                                                    src="./resource/index/<c:out value="${service.image}"/>"></a>
+                                                        </div>
+                                                    </div>
+                                                    <p>
+                                                        ${service.description}
+                                                    </p>
                                                 </div>
                                             </div>
-                                            <p>
-                                                ${service.description}
-                                            </p>
+                                        </c:forEach>
+                                    </c:if>
+                                    <c:if test="${empty requestScope.LIST}">
+                                        <div>
+                                            <font color="red">No available service!</font>
                                         </div>
-                                    </div>
-                                    </c:forEach>
+                                    </c:if>
                                 </div>
 
 
