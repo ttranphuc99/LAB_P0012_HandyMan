@@ -2,12 +2,6 @@
 <project-private xmlns="http://www.netbeans.org/ns/project-private/1">
     <editor-bookmarks xmlns="http://www.netbeans.org/ns/editor-bookmarks/2" lastBookmarkId="0"/>
     <open-files xmlns="http://www.netbeans.org/ns/projectui-open-files/2">
-        <group>
-            <file>file:/E:/Ki5-Fall2019/LAB231/BT/P0012HandyMan/src/java/phuctt/controllers/ReferenceMessageController.java</file>
-            <file>file:/E:/Ki5-Fall2019/LAB231/BT/P0012HandyMan/src/java/phuctt/controllers/ReferencesController.java</file>
-            <file>file:/E:/Ki5-Fall2019/LAB231/BT/P0012HandyMan/src/java/phuctt/daos/IntroductionDAO.java</file>
-            <file>file:/E:/Ki5-Fall2019/LAB231/BT/P0012HandyMan/web/reference.jsp</file>
-            <file>file:/E:/Ki5-Fall2019/LAB231/BT/P0012HandyMan/src/java/phuctt/daos/ReferenceMessageDAO.java</file>
-        </group>
+        <group/>
     </open-files>
 </project-private>

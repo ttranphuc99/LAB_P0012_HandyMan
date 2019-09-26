@@ -208,7 +208,10 @@
                                                     <div class="item">
                                                         <div class="controls">
                                                             <a rel="nofollow" class="email" href="mailto:<c:out value="${reference.email}"/>">Email</a>
-                                                            <a rel="nofollow" class="website" href="<c:out value="${reference.website}"/>" target="_blank">Website</a>
+                                                            <c:if test="${reference.website != null}">
+                                                                <a rel="nofollow" class="website" href="<c:out value="${reference.website}"/>" target="_blank">Website</a>
+                                                            </c:if>
+                                                            
                                                             <span class="date-text">${reference.createdTime}</span>
                                                         </div>
                                                         <div class="heading">

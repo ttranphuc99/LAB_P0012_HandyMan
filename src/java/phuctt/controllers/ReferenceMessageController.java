@@ -65,12 +65,6 @@ public class ReferenceMessageController extends HttpServlet {
                         params.put(item.getFieldName(), item.getString());
                     } else {
                         uploadFile = item;
-                        /*String itemName = item.getName();
-                        filename = itemName.substring(itemName.lastIndexOf("\\") + 1);
-                        String realPath = getServletContext().getRealPath("/") + "resource\\reference\\" + filename;
-                        
-                        File savedFile = new File(realPath);
-                        item.write(savedFile);*/
                     }
                 }
 
@@ -79,9 +73,12 @@ public class ReferenceMessageController extends HttpServlet {
                 String website = (String) params.get("txtWebsite");
                 String message = (String) params.get("txtMessage");
 
-                if (!website.contains("http://") && !website.contains("https://")) {
+                if (website.trim().isEmpty()) {
+                    website = null;
+                } else if (!website.contains("http://") && !website.contains("https://")) {
                     website = "http://" + website;
                 }
+                
                 ReferenceMessageDTO dto = new ReferenceMessageDTO(0, name, email, website, message, email, null);
 
                 int id = (new ReferenceMessageDAO()).insert(dto);
@@ -100,7 +97,6 @@ public class ReferenceMessageController extends HttpServlet {
                 } else {
                     url = SUCCESS;
                 }
-
             }
         } catch (Exception e) {
             log("Error at ReferenceMessageController: " + e.getMessage());
